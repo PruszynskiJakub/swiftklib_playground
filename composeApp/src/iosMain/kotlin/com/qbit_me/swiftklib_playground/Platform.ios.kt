@@ -1,9 +1,12 @@
 package com.qbit_me.swiftklib_playground
 
+import com.qbit_me.swiftklib.native.DeviceInfo
+import kotlinx.cinterop.ExperimentalForeignApi
 import platform.UIKit.UIDevice
 
 class IOSPlatform: Platform {
-    override val name: String = UIDevice.currentDevice.systemName() + " " + UIDevice.currentDevice.systemVersion
+    @OptIn(ExperimentalForeignApi::class)
+    override val name: String = DeviceInfo.getDeviceModel() + " AA " + DeviceInfo.getSystemVersion()
 }
 
 actual fun getPlatform(): Platform = IOSPlatform()
